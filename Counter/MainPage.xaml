@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Counter.MainPage">
+
+    <Grid Padding="0" RowDefinitions="*, Auto" BackgroundColor="LightGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+        <CollectionView x:Name="CountersCollection" 
+                        ItemsSource="{Binding Counters}" 
+                        Margin="10"
+                        Grid.Row="0">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" Margin="5" BackgroundColor="DimGray">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Label Text="{Binding CurrentValue}" 
+                                   Grid.Row="0"
+                                   TextColor="Black"/>
+                            
+                            <Grid Grid.Row="1" HorizontalOptions="Center" ColumnSpacing="50" Margin="-5, -2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Button Text="+" Clicked="OnIncrementClicked" Grid.Column="0" HorizontalOptions="CenterAndExpand" />
+                                <Button Text="-" Clicked="OnDecrementClicked" Grid.Column="1" HorizontalOptions="CenterAndExpand" />
+                            </Grid>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Frame Grid.Row="1" BackgroundColor="White" Padding="20" Margin="0,0,0,0">
+            <Grid RowDefinitions="Auto, Auto">
+
+                <Entry x:Name="InitialValueEntry"
+                       Focused="OnEntryFocused"
+                       Unfocused="OnEntryUnfocused" />
+
+                <Button Text="Dodaj licznik"
+                        Clicked="OnAddCounterClicked" 
+                        Grid.Row="1" 
+                        Grid.ColumnSpan="2" 
+                        HorizontalOptions="Center" 
+                        Margin="0,10,0,0"
+                        BorderColor="Black"
+                        WidthRequest="300"/>
+            </Grid>
+        </Frame>
+
+    </Grid>
+</ContentPage>
